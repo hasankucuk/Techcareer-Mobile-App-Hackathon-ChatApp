@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "518495512975",
+    "project_id": "voicechatfortechcareer",
+    "storage_bucket": "voicechatfortechcareer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518495512975:android:ba58cc71af05dbab2483fa",
+        "android_client_info": {
+          "package_name": "com.techcareer.mobileapphackathon.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518495512975-ia5akbqpmr2lri953hgsrmqnvotk88bv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techcareer.mobileapphackathon.chatapp",
+            "certificate_hash": "1021e52677b24ff270814713c3359884f9c4a58f"
+          }
+        },
+        {
+          "client_id": "518495512975-ov8rpr612httvdu81m3c6ild6kar00hd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA21h55W0uTi5VZSPWV5gyjn9ZztfvyI3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518495512975-ov8rpr612httvdu81m3c6ild6kar00hd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
