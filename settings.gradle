@@ -8,8 +8,10 @@ pluginManagement {
         id 'com.android.application' version '7.1.0-alpha12'
         id 'com.android.library' version '7.1.0-alpha12'
         id 'org.jetbrains.kotlin.android' version '1.5.31'
-        id 'androidx.navigation' version '2.4.0-alpha10'
-        id 'com.google.dagger' version '2.39.1'
+        id 'androidx.navigation.safeargs' version '2.4.0-alpha10'
+        id 'dagger.hilt.android.plugin'
+        id "org.jetbrains.kotlin.plugin.parcelize" version "1.6.0-M1"
+
     }
 
 
