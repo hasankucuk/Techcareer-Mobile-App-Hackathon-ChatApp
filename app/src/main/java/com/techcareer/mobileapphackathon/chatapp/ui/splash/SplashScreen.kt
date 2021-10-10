@@ -26,6 +26,7 @@ class SplashScreen : BaseActivity<ActivitySplashScreenBinding>() {
                 when (it) {
                     SplashState.NavigateToMainActivity -> {
                         launchActivity<MainActivity>()
+                        finish()
                     }
                     null -> {
                     }

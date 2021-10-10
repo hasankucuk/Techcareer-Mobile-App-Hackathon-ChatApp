@@ -1,9 +1,6 @@
 package com.techcareer.mobileapphackathon.chatapp.ui.signup
 
-import com.google.firebase.auth.FirebaseAuthException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.*
 import com.techcareer.mobileapphackathon.chatapp.repository.login.FirebaseAuthRepository
 import com.techcareer.mobileapphackathon.common.base.BaseViewModel
 import com.techcareer.mobileapphackathon.common.util.exteinsion.launch
@@ -14,12 +11,13 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
+
 /**
  * @author: Hasan Küçük on 9.10.2021
  */
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(val repository: FirebaseAuthRepository) :
+class SignUpViewModel @Inject constructor(private val repository: FirebaseAuthRepository) :
     BaseViewModel() {
 
     var userName = MutableStateFlow<String?>(null)
@@ -29,12 +27,20 @@ class SignUpViewModel @Inject constructor(val repository: FirebaseAuthRepository
     private var _signUpState = MutableSharedFlow<SignUpState?>()
     val signUpState: SharedFlow<SignUpState?> = _signUpState
 
+    fun alreadyExistUser() = launch { _signUpState.emit(SignUpState.AlreadyExistUser) }
+
     fun signUpUser() = launch {
         repository.signUp(userEmail.value.toString(), userPassword.value.toString()).collect {
             it.addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> {
                         launch {
+                            val profileUpdates = UserProfileChangeRequest.Builder()
+                                .setDisplayName(userName.value)
+                                .build()
+                            repository.getCurrentUser().collect {
+                                it?.updateProfile(profileUpdates)
+                            }
                             _signUpState.emit(SignUpState.Success)
                         }
                     }
@@ -62,8 +68,6 @@ class SignUpViewModel @Inject constructor(val repository: FirebaseAuthRepository
                             }
                             launch { _signUpState.emit(SignUpState.Fail(message)) }
                         }
-
-
                     }
                 }
             }
@@ -71,8 +75,8 @@ class SignUpViewModel @Inject constructor(val repository: FirebaseAuthRepository
     }
 }
 
-sealed class SignUpState() {
+sealed class SignUpState {
     object Success : SignUpState()
     class Fail(val message: String?) : SignUpState()
-
+    object AlreadyExistUser : SignUpState()
 }

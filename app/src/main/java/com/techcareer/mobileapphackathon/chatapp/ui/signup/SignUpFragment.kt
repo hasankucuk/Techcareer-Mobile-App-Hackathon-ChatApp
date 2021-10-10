@@ -31,14 +31,15 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
                             binding.root.showSnackBar(it)
                         }
                     }
-                    SignUpState.Success -> {
+                    SignUpState.Success, SignUpState.AlreadyExistUser -> {
                         navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment())
                     }
+
                     null -> {
                     }
                 }
             }
-
         }
+
     }
 }
