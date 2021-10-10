@@ -8,9 +8,7 @@ import com.techcareer.mobileapphackathon.common.base.BaseViewModel
 import com.techcareer.mobileapphackathon.common.util.exteinsion.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 /**
@@ -23,9 +21,14 @@ class ChatRoomListViewModel @Inject constructor(
     private val firebaseDaoRepository: FirebaseDaoRepository
 ) :
     BaseViewModel() {
+//    @Inject
+//    lateinit var searchViewModel: SearchViewModel
 
     private var _authenticationState = MutableStateFlow<AuthenticationState?>(null)
     val authenticationState: StateFlow<AuthenticationState?> = _authenticationState
+
+    private var _userList = MutableStateFlow<List<UserModel>?>(null)
+    val userList: StateFlow<List<UserModel>?> = _userList
 
     private var searchForUserJob: Job? = null
 
@@ -55,9 +58,10 @@ class ChatRoomListViewModel @Inject constructor(
 
         searchForUserJob = launch {
             firebaseDaoRepository.searchUser(text).collect {
-                it.forEach {
-                    Log.i("SIGN_", it.displayName!!)
-                }
+                _userList.emit(it)
+//                it.forEach {
+//                    Log.i("SIGN_", it.displayName!!)
+//                }
             }
         }
     }

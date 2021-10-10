@@ -7,10 +7,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.techcareer.mobileapphackathon.chatapp.R
 import com.techcareer.mobileapphackathon.chatapp.databinding.FragmentChatRoomListBinding
+import com.techcareer.mobileapphackathon.chatapp.ui.search.SearchViewModel
 import com.techcareer.mobileapphackathon.common.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -24,6 +26,7 @@ class ChatRoomListFragment : BaseFragment<FragmentChatRoomListBinding>() {
     override fun getMenuId(): Int = R.menu.menu_home
 
     private val chatRoomListViewModel: ChatRoomListViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by activityViewModels()
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -76,6 +79,14 @@ class ChatRoomListFragment : BaseFragment<FragmentChatRoomListBinding>() {
                     }
                     null -> {
                     }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            chatRoomListViewModel.userList.collect {
+                it?.let {
+                    searchViewModel.sendUserList(it)
                 }
             }
         }

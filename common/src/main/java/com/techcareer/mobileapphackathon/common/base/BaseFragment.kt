@@ -52,7 +52,6 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 //        findNavController().navigateUp()
     }
 
-    @CallSuper
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu.clear()
