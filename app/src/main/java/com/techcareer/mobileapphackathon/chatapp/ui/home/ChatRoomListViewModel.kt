@@ -40,9 +40,15 @@ class ChatRoomListViewModel @Inject constructor(private val repository: Firebase
             }
         }
     }
+
+    fun signOut() = launch {
+        repository.signOut()
+        _authenticationState.emit(AuthenticationState.SignOut)
+    }
 }
 
 sealed class AuthenticationState {
     class Authenticated(val user: UserModel) : AuthenticationState()
     object Unauthenticated : AuthenticationState()
+    object SignOut : AuthenticationState()
 }

@@ -1,10 +1,10 @@
 package com.techcareer.mobileapphackathon.common.base
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
+import androidx.annotation.MenuRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -22,6 +22,9 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
     @LayoutRes
     abstract fun getLayoutId(): Int
 
+    @MenuRes
+    open fun getMenuId() = -1
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +34,7 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
             binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
             binding.lifecycleOwner = viewLifecycleOwner
         }
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -45,6 +49,17 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
             null,
             navigatorExtras
         )
+//        findNavController().navigateUp()
+    }
+
+    @CallSuper
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.clear()
+
+        if (getMenuId() != -1) {
+            inflater.inflate(getMenuId(), menu)
+        }
     }
 
 }

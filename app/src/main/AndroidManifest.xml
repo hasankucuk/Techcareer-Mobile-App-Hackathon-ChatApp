@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TechcareerMobileAppHackathonChatApp">
         <activity
-            android:name=".ui.home.MainActivity"
+            android:name=".ui.home.HomeActivity"
             android:exported="true" />
         <activity
             android:name=".ui.splash.SplashScreen"

@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.techcareer.mobileapphackathon.chatapp.R
 import com.techcareer.mobileapphackathon.chatapp.databinding.ActivitySplashScreenBinding
-import com.techcareer.mobileapphackathon.chatapp.ui.home.MainActivity
+import com.techcareer.mobileapphackathon.chatapp.ui.home.HomeActivity
 import com.techcareer.mobileapphackathon.common.base.BaseActivity
 import com.techcareer.mobileapphackathon.common.util.exteinsion.launchActivity
 import kotlinx.coroutines.flow.collect
@@ -25,7 +25,7 @@ class SplashScreen : BaseActivity<ActivitySplashScreenBinding>() {
             viewModel.splashState.collect {
                 when (it) {
                     SplashState.NavigateToMainActivity -> {
-                        launchActivity<MainActivity>()
+                        launchActivity<HomeActivity>()
                         finish()
                     }
                     null -> {

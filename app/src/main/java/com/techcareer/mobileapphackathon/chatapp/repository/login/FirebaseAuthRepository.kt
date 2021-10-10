@@ -17,6 +17,7 @@ interface FirebaseAuthRepository {
     fun signUp(email: String, password: String): Flow<Task<AuthResult>>
     fun signIn(email: String, password: String): Flow<Task<AuthResult>>
     fun getCurrentUser(): Flow<FirebaseUser?>
+    fun signOut()
 }
 
 class FirebaseAuthRepositoryImpl @Inject constructor(
@@ -29,6 +30,10 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
 
     override fun signIn(email: String, password: String) = request {
         firebaseAuth.signInWithEmailAndPassword(email, password)
+    }
+
+    override fun signOut() {
+        firebaseAuth.signOut()
     }
 
     override fun getCurrentUser(): Flow<FirebaseUser?> = request { firebaseAuth.currentUser }
