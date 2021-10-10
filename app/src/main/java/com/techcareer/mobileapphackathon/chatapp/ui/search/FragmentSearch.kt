@@ -1,17 +1,16 @@
 package com.techcareer.mobileapphackathon.chatapp.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.techcareer.mobileapphackathon.chatapp.R
 import com.techcareer.mobileapphackathon.chatapp.databinding.FragmentSearchBinding
 import com.techcareer.mobileapphackathon.chatapp.repository.login.UserModel
 import com.techcareer.mobileapphackathon.common.base.BaseFragment
+import com.techcareer.mobileapphackathon.common.util.exteinsion.gone
+import com.techcareer.mobileapphackathon.common.util.exteinsion.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 /**
  * @author: Hasan Küçük on 10.10.2021
@@ -51,6 +50,16 @@ class FragmentSearch : BaseFragment<FragmentSearchBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         //super.onCreateOptionsMenu(menu, inflater)
+        val searchItem = menu.findItem(R.id.search) ?: return
+        val searchView = (searchItem.actionView as SearchView)
+        searchView.setOnQueryTextFocusChangeListener { view, focus ->
+            if (focus) {
+                binding.root.visible()
+            } else {
+                searchItem.collapseActionView()
+                binding.root.gone()
+            }
+        }
 
     }
 
