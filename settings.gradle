@@ -5,8 +5,8 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '7.1.0-alpha12'
-        id 'com.android.library' version '7.1.0-alpha12'
+        id 'com.android.application' version '7.1.0-alpha13'
+        id 'com.android.library' version '7.1.0-alpha13'
         id 'org.jetbrains.kotlin.android' version '1.5.31'
         id 'androidx.navigation.safeargs' version '2.4.0-alpha10'
         id 'dagger.hilt.android.plugin'
@@ -14,6 +14,16 @@ pluginManagement {
 
     }
 
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'dagger.hilt.android.plugin') {
+                useModule("com.google.dagger:hilt-android-gradle-plugin:2.39.1")
+            }
+            if (requested.id.id == 'com.google.gms.google-services') {
+                useModule("com.google.gms:google-services:4.3.10")
+            }
+        }
+    }
 
 }
 dependencyResolutionManagement {

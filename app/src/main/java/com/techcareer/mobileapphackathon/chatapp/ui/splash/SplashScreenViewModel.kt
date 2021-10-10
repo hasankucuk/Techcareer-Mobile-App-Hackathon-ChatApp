@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.SharedFlow
 class SplashScreenViewModel : BaseViewModel() {
 
     private var _splashState = MutableSharedFlow<SplashState?>()
-    var splashState: SharedFlow<SplashState?> = _splashState
+    val splashState: SharedFlow<SplashState?> = _splashState
 
     init {
         launch {
