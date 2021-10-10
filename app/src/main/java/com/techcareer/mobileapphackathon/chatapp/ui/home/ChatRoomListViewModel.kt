@@ -1,10 +1,13 @@
 package com.techcareer.mobileapphackathon.chatapp.ui.home
 
+import android.util.Log
+import com.techcareer.mobileapphackathon.chatapp.repository.home.FirebaseDaoRepository
 import com.techcareer.mobileapphackathon.chatapp.repository.login.FirebaseAuthRepository
 import com.techcareer.mobileapphackathon.chatapp.repository.login.UserModel
 import com.techcareer.mobileapphackathon.common.base.BaseViewModel
 import com.techcareer.mobileapphackathon.common.util.exteinsion.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -15,11 +18,16 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class ChatRoomListViewModel @Inject constructor(private val repository: FirebaseAuthRepository) :
+class ChatRoomListViewModel @Inject constructor(
+    private val repository: FirebaseAuthRepository,
+    private val firebaseDaoRepository: FirebaseDaoRepository
+) :
     BaseViewModel() {
 
     private var _authenticationState = MutableStateFlow<AuthenticationState?>(null)
     val authenticationState: StateFlow<AuthenticationState?> = _authenticationState
+
+    private var searchForUserJob: Job? = null
 
     init {
         launch {
@@ -36,6 +44,19 @@ class ChatRoomListViewModel @Inject constructor(private val repository: Firebase
                             )
                         )
                     )
+                }
+            }
+        }
+    }
+
+    fun searchUser(text: String) {
+        searchForUserJob?.cancel()
+        Log.i("SIGN_", "search -> $text")
+
+        searchForUserJob = launch {
+            firebaseDaoRepository.searchUser(text).collect {
+                it.forEach {
+                    Log.i("SIGN_", it.displayName!!)
                 }
             }
         }

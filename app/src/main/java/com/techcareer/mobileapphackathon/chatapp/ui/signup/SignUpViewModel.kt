@@ -1,7 +1,9 @@
 package com.techcareer.mobileapphackathon.chatapp.ui.signup
 
 import com.google.firebase.auth.*
+import com.techcareer.mobileapphackathon.chatapp.repository.home.FirebaseDaoRepository
 import com.techcareer.mobileapphackathon.chatapp.repository.login.FirebaseAuthRepository
+import com.techcareer.mobileapphackathon.chatapp.repository.login.UserModel
 import com.techcareer.mobileapphackathon.common.base.BaseViewModel
 import com.techcareer.mobileapphackathon.common.util.exteinsion.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +19,10 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(private val repository: FirebaseAuthRepository) :
+class SignUpViewModel @Inject constructor(
+    private val repository: FirebaseAuthRepository,
+    private val firebaseDaoRepository: FirebaseDaoRepository
+) :
     BaseViewModel() {
 
     var userName = MutableStateFlow<String?>(null)
@@ -39,7 +44,15 @@ class SignUpViewModel @Inject constructor(private val repository: FirebaseAuthRe
                                 .setDisplayName(userName.value)
                                 .build()
                             repository.getCurrentUser().collect {
-                                it?.updateProfile(profileUpdates)
+                                it?.let {
+                                    it.updateProfile(profileUpdates)
+                                    val userModel = UserModel(
+                                        displayName = userName.value.toString(), uid = it.uid,
+                                        email = it.email,
+                                        isOnline = false
+                                    )
+                                    firebaseDaoRepository.createUser(userModel)
+                                }
                             }
                             _signUpState.emit(SignUpState.Success)
                         }

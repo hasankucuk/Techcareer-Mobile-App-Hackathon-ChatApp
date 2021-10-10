@@ -28,7 +28,18 @@ class ChatRoomListFragment : BaseFragment<FragmentChatRoomListBinding>() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         val searchItem = menu.findItem(R.id.search)
-        val searchView = searchItem.actionView as SearchView
+        (searchItem.actionView as SearchView).apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean = true
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let {
+                        chatRoomListViewModel.searchUser(it)
+                    }
+                    return true
+                }
+            })
+        }
     }
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        val inflater = menuInflater
@@ -60,7 +71,7 @@ class ChatRoomListFragment : BaseFragment<FragmentChatRoomListBinding>() {
                         navigate(ChatRoomListFragmentDirections.actionChatRoomListFragmentToSignUpFragment())
                     }
                     is AuthenticationState.SignOut -> {
-                        Log.i("SIGN_","sign out")
+                        Log.i("SIGN_", "sign out")
                         navigate(ChatRoomListFragmentDirections.actionChatRoomListFragmentToLoginFragment())
                     }
                     null -> {
