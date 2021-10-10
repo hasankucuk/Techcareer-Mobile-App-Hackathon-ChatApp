@@ -1,16 +1,15 @@
 package com.techcareer.mobileapphackathon.chatapp.ui.signup
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.techcareer.mobileapphackathon.chatapp.R
 import com.techcareer.mobileapphackathon.chatapp.databinding.FragmentSignUpBinding
 import com.techcareer.mobileapphackathon.common.base.BaseFragment
+import com.techcareer.mobileapphackathon.common.util.exteinsion.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -24,11 +23,22 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = signUpViewModel
 
-        binding.signUpBtn.setOnClickListener {
-            lifecycleScope.launch {
-                Log.i("TWO_WAY", "test -> ${signUpViewModel.userName.value}")
+        lifecycleScope.launch {
+            signUpViewModel.signUpState.collect {
+                when (it) {
+                    is SignUpState.Fail -> {
+                        it.message?.let {
+                            binding.root.showSnackBar(it)
+                        }
+                    }
+                    SignUpState.Success -> {
+                        navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment())
+                    }
+                    null -> {
+                    }
+                }
             }
-        }
 
+        }
     }
 }

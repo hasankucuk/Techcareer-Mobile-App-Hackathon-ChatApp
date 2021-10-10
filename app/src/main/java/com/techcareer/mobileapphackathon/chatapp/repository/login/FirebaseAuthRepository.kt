@@ -1,5 +1,7 @@
 package com.techcareer.mobileapphackathon.chatapp.repository.login
 
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.techcareer.mobileapphackathon.common.base.BaseRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,14 +13,17 @@ import javax.inject.Inject
  */
 interface FirebaseAuthRepository {
 
-    fun signUp(): Flow<String>
+    fun signUp(email: String, password: String): Flow<Task<AuthResult>>
     fun signIn()
 }
 
 class FirebaseAuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ) : BaseRepository(), FirebaseAuthRepository {
-    override fun signUp(): Flow<String> = request { "" }
+
+    override fun signUp(email: String, password: String): Flow<Task<AuthResult>> = request {
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+    }
 
     override fun signIn() {
     }

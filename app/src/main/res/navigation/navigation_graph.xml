@@ -15,5 +15,13 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.techcareer.mobileapphackathon.chatapp.ui.signup.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.techcareer.mobileapphackathon.chatapp.ui.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

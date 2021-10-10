@@ -16,7 +16,7 @@ class SplashScreenViewModel : BaseViewModel() {
 
     init {
         launch {
-            delay(2000)
+            delay(1000)
             _splashState.emit(SplashState.NavigateToMainActivity)
         }
     }
