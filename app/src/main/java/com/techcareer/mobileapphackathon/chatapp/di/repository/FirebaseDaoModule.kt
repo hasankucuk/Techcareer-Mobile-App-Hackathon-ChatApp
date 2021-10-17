@@ -2,6 +2,7 @@ package com.techcareer.mobileapphackathon.chatapp.di.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.storage.FirebaseStorage
 import com.techcareer.mobileapphackathon.chatapp.repository.home.FirebaseDaoRepository
 import com.techcareer.mobileapphackathon.chatapp.repository.home.FirebaseDaoRepositoryImpl
 import dagger.Module
@@ -18,8 +19,9 @@ object FirebaseDaoModule {
     @Singleton
     internal fun provideFirebaseDaoRepository(
         firebaseFirestore: FirebaseFirestore,
-        firebaseRemoteConfig: FirebaseRemoteConfig
+        firebaseRemoteConfig: FirebaseRemoteConfig,
+        firebaseStorage: FirebaseStorage
     ): FirebaseDaoRepository =
-        FirebaseDaoRepositoryImpl(firebaseFirestore, firebaseRemoteConfig)
+        FirebaseDaoRepositoryImpl(firebaseFirestore, firebaseRemoteConfig, firebaseStorage)
 
 }

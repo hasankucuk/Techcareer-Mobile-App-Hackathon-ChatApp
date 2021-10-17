@@ -1,6 +1,7 @@
 package com.techcareer.mobileapphackathon.chatapp.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
@@ -11,6 +12,7 @@ import com.techcareer.mobileapphackathon.common.base.BaseFragment
 import com.techcareer.mobileapphackathon.common.util.exteinsion.gone
 import com.techcareer.mobileapphackathon.common.util.exteinsion.visible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 /**
  * @author: Hasan Küçük on 10.10.2021
@@ -23,10 +25,16 @@ class FragmentSearch : BaseFragment<FragmentSearchBinding>() {
 
     override fun getMenuId(): Int = R.menu.menu_home
 
+    lateinit var searchItem: MenuItem
+
     private val searchViewModel: SearchViewModel by activityViewModels()
     private var searchAdapter = SearchAdapter(emptyList(), object : SearchListener {
         override fun onUserClicked(user: UserModel) {
-
+            Log.i("SIGN_","tıkladın ${user.uid}")
+            user.uid?.let {
+                onSearchViewClose()
+                searchViewModel.getChatRoom(user)
+            }
         }
     })
 
@@ -50,17 +58,21 @@ class FragmentSearch : BaseFragment<FragmentSearchBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         //super.onCreateOptionsMenu(menu, inflater)
-        val searchItem = menu.findItem(R.id.search) ?: return
+         searchItem = menu.findItem(R.id.search) ?: return
         val searchView = (searchItem.actionView as SearchView)
         searchView.setOnQueryTextFocusChangeListener { view, focus ->
             if (focus) {
                 binding.root.visible()
             } else {
-                searchItem.collapseActionView()
-                binding.root.gone()
+                onSearchViewClose()
             }
         }
-
+    }
+    private fun onSearchViewClose(){
+        if (this::searchItem.isInitialized) {
+            binding.root.gone()
+            searchItem.collapseActionView()
+        }
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

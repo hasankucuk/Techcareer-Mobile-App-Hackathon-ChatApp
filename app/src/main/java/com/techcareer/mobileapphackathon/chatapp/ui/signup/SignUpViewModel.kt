@@ -35,6 +35,18 @@ class SignUpViewModel @Inject constructor(
     fun alreadyExistUser() = launch { _signUpState.emit(SignUpState.AlreadyExistUser) }
 
     fun signUpUser() = launch {
+        _signUpState.emit(SignUpState.LoadingState)
+
+        firebaseDaoRepository.isUserNameAvailable(userName.value.toString()) {
+            if (it) {
+                createUser()
+            } else {
+                launch { _signUpState.emit(SignUpState.Fail("Bu kullanıcı adına sahip bir hesap zaten var. Lütfen başka bir kullanıcı adı seçin.")) }
+            }
+        }
+    }
+
+    private fun createUser() = launch {
         repository.signUp(userEmail.value.toString(), userPassword.value.toString()).collect {
             it.addOnCompleteListener {
                 when (it.isSuccessful) {
@@ -51,10 +63,16 @@ class SignUpViewModel @Inject constructor(
                                         email = it.email,
                                         isOnline = false
                                     )
-                                    firebaseDaoRepository.createUser(userModel)
+                                    firebaseDaoRepository.createUser(userModel) {
+                                        if (it) {
+                                            launch { _signUpState.emit(SignUpState.Success) }
+                                        } else {
+
+                                        }
+                                    }
                                 }
                             }
-                            _signUpState.emit(SignUpState.Success)
+
                         }
                     }
                     false -> {
@@ -92,4 +110,5 @@ sealed class SignUpState {
     object Success : SignUpState()
     class Fail(val message: String?) : SignUpState()
     object AlreadyExistUser : SignUpState()
+    object LoadingState : SignUpState()
 }

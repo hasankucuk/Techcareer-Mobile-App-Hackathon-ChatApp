@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.techcareer.mobileapphackathon.chatapp.ui.chat.ChatViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            visibleElseGone="@{viewModel.viewState.permissionDeniedOrListEmpty}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{viewModel.viewState.title}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:text="@{viewModel.viewState.desc}"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPermission"
+                visibleElseGone="@{viewModel.viewState.permissionDenied}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_right_voice_message_bubble"
+                android:text="@string/permission_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <RelativeLayout
+            visibleElseGone="@{viewModel.viewState.permissionGranted}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/voiceMessageRecyclerView"
+                visibleElseGone="@{viewModel.viewState.permissionGranted}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/relativeVoiceEffectGroup"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="75dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:stackFromEnd="false"
+                tools:listitem="@layout/item_right_voice_message" />
+
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/sendButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/selector_send_voice_message"
+                android:padding="8dp"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/relativeVoiceEffectGroup"
+                visibleElseGone="@{viewModel.viewState.permissionGranted}"
+                android:layout_alignParentBottom="true"
+                android:gravity="center">
+
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/effectTypeChipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipVoiceTypeNormal"
+                        style="@style/ChipStyle"
+                        android:layout_width="wrap_content"
+                        android:checked="true"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat_fragment_voice_type_normal" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipVoiceTypeVibration"
+                        style="@style/ChipStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat_fragment_voice_type_vibration" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipVoiceTypeReverse"
+                        style="@style/ChipStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat_fragment_voice_type_reverse" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipVoiceTypeRobot"
+                        style="@style/ChipStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat_fragment_voice_type_robot" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipVoiceTypeCave"
+                        style="@style/ChipStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat_fragment_voice_type_cave" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.tougee.recorderview.AudioRecordView
+                    android:id="@+id/record_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    app:cancel_text="İptal"
+                    app:slide_cancel_text="İptal et"
+                    app:vibration_enable="true" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInfoText"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/send_voice_message_hint" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

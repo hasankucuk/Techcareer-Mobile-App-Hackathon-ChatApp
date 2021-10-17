@@ -7,18 +7,21 @@
     <fragment
         android:id="@+id/chatRoomListFragment"
         android:name="com.techcareer.mobileapphackathon.chatapp.ui.home.ChatRoomListFragment"
-        android:label="ChatRoomListFragment" >
+        android:label="ChatRoomListFragment">
         <action
             android:id="@+id/action_chatRoomListFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_chatRoomListFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_chatRoomListFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.techcareer.mobileapphackathon.chatapp.ui.signup.SignUpFragment"
-        android:label="SignUpFragment" >
+        android:label="SignUpFragment">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -26,12 +29,24 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.techcareer.mobileapphackathon.chatapp.ui.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_loginFragment_to_chatRoomListFragment"
+            app:destination="@id/chatRoomListFragment" />
+    </fragment>
+    <include app:graph="@navigation/navigation_search" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.techcareer.mobileapphackathon.chatapp.ui.chat.ChatFragment"
+        android:label="ChatFragment">
+        <action
+            android:id="@+id/action_chatFragment_to_navigation_search"
+            app:destination="@+id/navigation_search" />
+        <action
+            android:id="@+id/action_chatFragment_to_chatRoomListFragment"
             app:destination="@id/chatRoomListFragment" />
     </fragment>
 </navigation>

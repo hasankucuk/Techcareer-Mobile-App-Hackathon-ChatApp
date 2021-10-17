@@ -8,7 +8,8 @@ data class UserModel(
     var uid: String? = null,
     var isOnline: Boolean? = null,
     var userNameForSearch: List<String>? = listOf(),
-    override val id: Long = 0
+    override val id: Long = 0,
+    var fcmToken: String? = null
 ) : ListAdapterItem {
     fun mapStringToList(name: String?): List<String> {
         val list = arrayListOf<String>()

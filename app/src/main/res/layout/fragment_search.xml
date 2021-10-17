@@ -16,28 +16,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="200dp">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
             android:id="@+id/searchRecyclerView"
+            listItem="@{viewModel.userList}"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            listItem="@{viewModel.userList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_search" />
 
         <androidx.core.widget.ContentLoadingProgressBar
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="48dp"
-            android:visibility="gone"
             android:layout_height="48dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

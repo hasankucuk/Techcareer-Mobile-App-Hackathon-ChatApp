@@ -3,13 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1453125" />
+        <entry key="../../../../private/var/folders/b4/g4qkbhj103v5dhnwn2xm_1f40000gn/T/drawable-temp/fake_of_seekbar_thumb1.xml" value="0.166" />
+        <entry key="../../../../private/var/folders/b4/g4qkbhj103v5dhnwn2xm_1f40000gn/T/drawable-temp/fake_of_seekbar_thumb2.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/selector_send_voice_message.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_chat_list.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/bg_left_voice_message_bubble.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/bg_right_voice_message_bubble.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/chip_text_selector.xml" value="0.2415" />
+        <entry key="app/src/main/res/drawable/ic_done_all_black_24dp.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/ic_mic_white_24dp.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_pause_black_24dp.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/ic_pause_white_24dp.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/ic_play_arrow_black_24dp.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/ic_play_arrow_white_24dp.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_search_white_36dp.xml" value="0.2125" />
+        <entry key="app/src/main/res/drawable/ic_thumb_pressed.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/ic_thumb_unpressed.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/ic_voice_off.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_voice_on.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/item_right_bubble.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/seekbar_progress.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/seekbar_progress_white.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/selector_button_play.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/selector_button_play_white.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/selector_chip_background.xml" value="0.2415" />
+        <entry key="app/src/main/res/drawable/selector_send_voice_message.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.18645833333333334" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_chat_room_list.xml" value="0.3671875" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3671875" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.18645833333333334" />
+        <entry key="app/src/main/res/layout/item_chat_room.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_left_voice_message.xml" value="0.2734375" />
+        <entry key="app/src/main/res/layout/item_righ_voice_message.xml" value="0.2734375" />
+        <entry key="app/src/main/res/layout/item_right_voice_message.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_search.xml" value="0.335" />
         <entry key="app/src/main/res/menu/menu_home.xml" value="0.2734375" />
         <entry key="common/src/main/res/layout/view_loading.xml" value="0.2078125" />

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.techcareer.mobileapphackathon.chatapp.repository.home.ChatModel" />
+
+        <variable
+            name="clickListener"
+            type="com.techcareer.mobileapphackathon.chatapp.ui.home.ChatRoomListAdapter.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:elevation="2dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(v) -> clickListener.onClick(v, item)}"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chat_list"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/nameTextView"
+                    ifNotEmptyVisibleElseGone="@{item.receiver.displayName}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-light"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:text="@{item.receiver.displayName}"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="hasannkucuk" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    ifNotEmptyVisibleElseGone="@{item.receiver.displayName}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-light"
+                    android:maxLines="1"
+                    android:textColor="@color/leftBubbleColor"
+                    android:padding="0dp"
+                    android:text="@{item.receiver.email}"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="hasan@mail.com" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+</layout>

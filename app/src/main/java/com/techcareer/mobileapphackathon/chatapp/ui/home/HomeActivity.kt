@@ -17,7 +17,7 @@ class HomeActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // navController?.navigate(R.id.loginFragment)
+        // navController?.navigate(R.id.loginFragment)
     }
 
 

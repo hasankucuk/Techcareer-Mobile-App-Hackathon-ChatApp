@@ -69,7 +69,12 @@ dependencies {
     implementation "com.google.firebase:firebase-core"
     implementation "com.google.firebase:firebase-messaging"
     implementation "com.google.firebase:firebase-storage"
-
+    
+    //recorderview
+    implementation 'com.github.tougee:audiorecorderview:1.0.4'
+    
+    //voicechanger
+    implementation 'com.arthenica:mobile-ffmpeg-full:4.2.2.LTS'
 
     //test
     testImplementation 'junit:junit:4.13.2'

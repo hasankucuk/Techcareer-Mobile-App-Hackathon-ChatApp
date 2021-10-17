@@ -16,4 +16,9 @@
         <!--    Splash screen cold start disable    -->
         <item name="android:windowDisablePreview">true</item>
     </style>
+
+    <style name="ChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/selector_chip_background</item>
+        <item name="android:textColor">@drawable/chip_text_selector</item>
+    </style>
 </resources>

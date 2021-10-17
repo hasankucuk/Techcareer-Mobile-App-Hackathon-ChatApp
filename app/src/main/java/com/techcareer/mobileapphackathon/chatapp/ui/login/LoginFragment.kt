@@ -31,15 +31,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             loginViewModel.loginState.collect {
                 when (it) {
                     LoginState.DontHaveAnyUser -> {
+                        hideLoading()
                         navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
                     }
                     LoginState.Success -> {
+                        hideLoading()
                         navigate(LoginFragmentDirections.actionLoginFragmentToChatRoomListFragment())
                     }
                     is LoginState.Fail -> {
                         binding.root.showSnackBar(it.message)
+                        hideLoading()
                     }
+                    LoginState.LoadingState -> {showLoading()}
                     null -> {
+                        hideLoading()
                     }
                 }
             }

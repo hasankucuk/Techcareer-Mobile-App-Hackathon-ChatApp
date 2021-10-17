@@ -24,6 +24,7 @@ class LoginViewModel @Inject constructor(private val repository: FirebaseAuthRep
     val loginState: StateFlow<LoginState?> = _loginState
 
     fun signIn() = launch {
+        _loginState.emit(LoginState.LoadingState)
         repository.signIn(userEmail.value.toString(), userPassword.value.toString()).collect {
             it.addOnCompleteListener {
                 when (it.isSuccessful) {
@@ -46,4 +47,5 @@ sealed class LoginState {
     object Success : LoginState()
     class Fail(val message: String?) : LoginState()
     object DontHaveAnyUser : LoginState()
+    object LoadingState : LoginState()
 }

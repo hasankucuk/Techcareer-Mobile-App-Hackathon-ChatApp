@@ -29,7 +29,7 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giriş Yap"
+                android:text="@string/login_hint"
                 android:textColor="#000"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
-                android:hint="E-posta"
+                android:hint="@string/email"
                 app:boxStrokeColor="@color/purple_700"
                 app:hintTextColor="?attr/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle">
@@ -65,7 +65,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
-                android:hint="Şifre"
+                android:hint="@string/password"
                 app:boxStrokeColor="@color/purple_700"
                 app:hintTextColor="?attr/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@id/inputLayoutEmail"
@@ -83,7 +83,8 @@
                 android:id="@+id/tvForgotPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Şifremi Unuttum"
+                android:text="@string/forgot_password"
+                android:visibility="invisible"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="@id/inputLayoutPassword"
                 app:layout_constraintTop_toBottomOf="@id/inputLayoutPassword" />
@@ -96,7 +97,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:onClick="@{ v -> viewModel.signIn()}"
-                android:text="Giriş Yap"
+                android:text="@string/login_btn_text"
                 app:layout_constraintTop_toBottomOf="@id/inputLayoutPassword" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -105,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:onClick="@{ v -> viewModel.dontHaveAnyUser()}"
-                android:text="Bir hesabın yok mu? Kayıt ol."
+                android:text="@string/sign_up_"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnSignIn" />

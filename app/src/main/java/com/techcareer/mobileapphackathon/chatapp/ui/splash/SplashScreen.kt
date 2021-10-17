@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.techcareer.mobileapphackathon.chatapp.R
 import com.techcareer.mobileapphackathon.chatapp.databinding.ActivitySplashScreenBinding
+import com.techcareer.mobileapphackathon.chatapp.notification.NotificationUtils
 import com.techcareer.mobileapphackathon.chatapp.ui.home.HomeActivity
 import com.techcareer.mobileapphackathon.common.base.BaseActivity
 import com.techcareer.mobileapphackathon.common.util.exteinsion.launchActivity

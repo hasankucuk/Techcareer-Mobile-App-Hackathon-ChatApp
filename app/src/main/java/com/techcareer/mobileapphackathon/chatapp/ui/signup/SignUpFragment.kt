@@ -8,6 +8,7 @@ import com.techcareer.mobileapphackathon.chatapp.R
 import com.techcareer.mobileapphackathon.chatapp.databinding.FragmentSignUpBinding
 import com.techcareer.mobileapphackathon.common.base.BaseFragment
 import com.techcareer.mobileapphackathon.common.util.exteinsion.showSnackBar
+import com.techcareer.mobileapphackathon.common.view.LoadingView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -30,12 +31,18 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
                         it.message?.let {
                             binding.root.showSnackBar(it)
                         }
+                        hideLoading()
                     }
                     SignUpState.Success, SignUpState.AlreadyExistUser -> {
                         navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment())
+                        hideLoading()
                     }
 
+                    SignUpState.LoadingState -> {
+                       showLoading()
+                    }
                     null -> {
+                        hideLoading()
                     }
                 }
             }

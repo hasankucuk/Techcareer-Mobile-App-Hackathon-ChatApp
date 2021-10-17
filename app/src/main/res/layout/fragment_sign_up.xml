@@ -31,7 +31,7 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hesap Oluştur"
+                android:text="@string/create_user_title"
                 android:textColor="#000"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,13 +46,14 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
-                android:hint="Kullanıcı Adı"
+                android:hint="@string/username_hint"
                 app:boxStrokeColor="@color/purple_700"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fullNameEt"
                     android:layout_width="match_parent"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:layout_height="match_parent"
                     android:drawablePadding="8dp"
                     android:text="@={viewModel.userName}"
@@ -67,7 +68,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
-                android:hint="E-posta"
+                android:hint="@string/email"
                 app:boxStrokeColor="@color/purple_700"
                 app:hintTextColor="?attr/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@id/inputLayoutUserName">
@@ -88,7 +89,7 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
-                android:hint="Şifre"
+                android:hint="@string/password"
                 android:layout_marginEnd="24dp"
                 app:boxStrokeColor="@color/purple_700"
                 app:hintTextColor="?attr/colorPrimary"
@@ -113,7 +114,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:onClick="@{v -> viewModel.signUpUser()}"
-                android:text="Kayıt ol"
+                android:text="@string/sign_up_btn"
                 app:layout_constraintTop_toBottomOf="@id/inputLayoutPassword" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -122,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{v -> viewModel.alreadyExistUser()}"
                 android:layout_marginTop="24dp"
-                android:text="Zaten bir hesaabın var mı? Giriş Yap!"
+                android:text="@string/login_"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/signUpBtn" />
