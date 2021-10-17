@@ -29,12 +29,6 @@ In coroutines, a flow is a type that can emit multiple values sequentially, as o
 
 
 
-```xml
-
-
-```
-
-
 
 
 License
