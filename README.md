@@ -8,6 +8,8 @@ Konu: Sesli Chat Uygulaması
 
 # Tech Stacks
 
+- **FFmpeg**
+: FFmpeg is a free and open-source software project consisting of a large suite of libraries and programs for handling video, audio, and other multimedia files and streams.
 - **MVVM** 
 : Model View View Model Design Pattern
 - **Navigation Component**
