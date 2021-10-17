@@ -2,7 +2,7 @@
 
 
 
-Kariyer.net Mobile App Hackathon
+techcareer.net Mobile App Hackathon
 Konu: Sesli Chat Uygulaması
 
 
